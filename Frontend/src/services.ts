@@ -1,0 +1,6 @@
+export type Role='student'|'coordinator'|'admin';
+export type User={id:number;email:string;role:Role;name:string;student_id:string|null;department:string;program:string;status:string;activeClubId?:number;activeClub?:Row;};
+export type Row=Record<string,any>;
+export async function api<T=any>(path:string,options:RequestInit={}):Promise<T>{const method=(options.method??'GET').toUpperCase(),headers:{[key:string]:string}={'Content-Type':'application/json',...(options.headers as Record<string,string>|undefined)};if(!['GET','HEAD','OPTIONS'].includes(method)){const csrfResponse=await fetch('/api/auth/csrf',{credentials:'include',cache:'no-store'});const csrfData=await csrfResponse.json().catch(()=>({error:'Could not verify this request.'}));if(!csrfResponse.ok)throw new Error(csrfData.error||'Could not verify this request.');headers['X-CSRF-Token']=csrfData.token}const response=await fetch('/api'+path,{...options,credentials:'include',headers});const data=await response.json().catch(()=>({error:'Unexpected response from CampusSphere.'}));if(!response.ok)throw new Error(data.error||`Request failed (${response.status})`);return data as T}
+export const json=(method:string,body:unknown):RequestInit=>({method,body:JSON.stringify(body)});
+

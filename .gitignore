@@ -1,0 +1,10 @@
+node_modules/
+.env
+.env.*
+!.env.example
+Backend/data/*.sqlite
+Backend/data/*.sqlite-*
+Backend/dist/
+Frontend/dist/
+Frontend/*.tsbuildinfo
+npm-debug.log*

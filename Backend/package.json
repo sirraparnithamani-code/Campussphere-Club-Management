@@ -1,0 +1,30 @@
+{
+  "name": "@campussphere/server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --env-file-if-exists=../.env --import tsx src/index.ts",
+    "build": "tsc",
+    "start": "node --env-file-if-exists=../.env dist/index.js",
+    "init-db": "node --env-file-if-exists=../.env --import tsx src/db.ts",
+    "seed": "node --env-file-if-exists=../.env --import tsx src/seed.ts",
+    "admin:create": "node --env-file-if-exists=../.env --import tsx src/create-admin.ts",
+    "test": "tsx --test tests/*.test.ts"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "express-session": "^1.18.1",
+    "helmet": "^8.0.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/express-session": "^1.18.1",
+    "@types/node": "^24.0.0",
+    "tsx": "^4.19.3",
+    "typescript": "^5.7.3"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "campussphere",
+  "version": "1.0.0",
+  "private": true,
+  "description": "CampusSphere — Your campus. Your community.",
+  "engines": { "node": ">=24 <25" },
+  "workspaces": ["Frontend", "Backend"],
+  "scripts": {
+    "dev": "concurrently -k \"npm:dev:server\" \"npm:dev:client\"",
+    "dev:server": "npm --workspace @campussphere/server run dev",
+    "dev:client": "npm --workspace @campussphere/client run dev",
+    "init-db": "npm --workspace @campussphere/server run init-db",
+    "seed": "npm --workspace @campussphere/server run seed",
+    "admin:create": "npm --workspace @campussphere/server run admin:create",
+    "test": "npm --workspace @campussphere/server test && npm --workspace @campussphere/client test",
+    "build": "npm --workspace @campussphere/client run build && npm --workspace @campussphere/server run build",
+    "start": "npm --workspace @campussphere/server start"
+  },
+  "devDependencies": { "concurrently": "^9.1.2" }
+}

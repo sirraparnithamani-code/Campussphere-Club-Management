@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: campussphere-demo
+    runtime: node
+    plan: free
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: HOST
+        value: 0.0.0.0
+      - key: TRUST_PROXY
+        value: "1"
+      - key: DATABASE_PATH
+        value: /tmp/campussphere.sqlite
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: CAMPUSSPHERE_DEMO_MODE
+        value: "true"
+      - key: CAMPUSSPHERE_SEED_PASSWORD
+        value: SphereDemo!2026Campus
+      - key: VITE_DEMO_MODE
+        value: "true"
